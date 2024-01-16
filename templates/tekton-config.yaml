@@ -1,0 +1,15 @@
+{{- if .Capabilities.APIVersions.Has "operator.tekton.dev/v1alpha1" -}}
+apiVersion: operator.tekton.dev/v1alpha1
+kind: TektonConfig
+metadata:
+  name: config
+spec:
+  profile: {{ .profile }}
+  targetNamespace: {{ .Release.Namespace | quote }}
+  pruner:
+    resources:
+    - pipelinerun
+    - taskrun
+    keep: 100
+    schedule: "0 8 * * *"
+{{- end }}

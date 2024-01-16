@@ -1,0 +1,7 @@
+apiVersion: v2
+name: tekton-operator
+version: 1.0.0
+dependencies:
+  - name: tekton-operator
+    version: 0.69.99
+    repository: "file://charts/tekton-operator-0.69..99.tgz"
