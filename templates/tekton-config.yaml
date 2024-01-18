@@ -6,33 +6,27 @@ metadata:
 spec:
   profile: {{ .profile }}
   targetNamespace: {{ .Release.Namespace | quote }}
-  options:
-    deployments:
-      tekton-operator-webhook:
-        metadata:
-          annotations:
-            traffic.sidecar.istio.io/excludeOutboundPorts: "443"
-            traffic.sidecar.istio.io/includeInboundPorts: "443"
-      tekton-operator-proxy-webhook:
-        metadata:
-          annotations:
-            traffic.sidecar.istio.io/excludeOutboundPorts: "443"
-            traffic.sidecar.istio.io/includeInboundPorts: "443"
-      tekton-pipelines-webhook:
-        metadata:
-          annotations:
-            traffic.sidecar.istio.io/excludeOutboundPorts: "443"
-            traffic.sidecar.istio.io/includeInboundPorts: "443"
-      tekton-triggers-webhook:
-        metadata:
-          annotations:
-            traffic.sidecar.istio.io/excludeOutboundPorts: "443"
-            traffic.sidecar.istio.io/includeInboundPorts: "443"
-      tekton-triggers-core-interceptors:
-        metadata:
-          annotations:
-            traffic.sidecar.istio.io/excludeOutboundPorts: "8443"
-            traffic.sidecar.istio.io/includeInboundPorts: "8443"
+  pipeline:
+    options:
+      deployments:
+        tekton-pipelines-webhook:
+          metadata:
+            annotations:
+              traffic.sidecar.istio.io/excludeOutboundPorts: "443"
+              traffic.sidecar.istio.io/includeInboundPorts: "443"
+  chain:
+    options:
+      deployments:
+        tekton-triggers-webhook:
+          metadata:
+            annotations:
+              traffic.sidecar.istio.io/excludeOutboundPorts: "443"
+              traffic.sidecar.istio.io/includeInboundPorts: "443"
+        tekton-triggers-core-interceptors:
+          metadata:
+            annotations:
+              traffic.sidecar.istio.io/excludeOutboundPorts: "8443"
+              traffic.sidecar.istio.io/includeInboundPorts: "8443"
   pruner:
     resources:
     - pipelinerun
