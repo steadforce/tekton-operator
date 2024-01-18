@@ -4,3 +4,4 @@ tekton-operator:
   installCRDs: true
   podAnnotations:
     traffic.sidecar.istio.io/excludeOutboundPorts: "443"
+    traffic.sidecar.istio.io/includeInboundPorts: "443"
