@@ -10,12 +10,12 @@ spec:
     options:
       deployments:
         tekton-pipelines-webhook:
-        spec:
-          template:
-            metadata:
-              annotations:
-                traffic.sidecar.istio.io/excludeOutboundPorts: "443"
-                traffic.sidecar.istio.io/includeInboundPorts: "443"
+          spec:
+            template:
+              metadata:
+                annotations:
+                  traffic.sidecar.istio.io/excludeOutboundPorts: "443"
+                  traffic.sidecar.istio.io/includeInboundPorts: "443"
   chain:
     options:
       deployments:
