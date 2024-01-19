@@ -15,7 +15,7 @@ spec:
               metadata:
                 annotations:
                   traffic.sidecar.istio.io/excludeOutboundPorts: "443"
-                  traffic.sidecar.istio.io/includeInboundPorts: "443"
+                  traffic.sidecar.istio.io/excludeInboundPorts: "443"
   chain:
     options:
       deployments:
@@ -23,12 +23,12 @@ spec:
           metadata:
             annotations:
               traffic.sidecar.istio.io/excludeOutboundPorts: "443"
-              traffic.sidecar.istio.io/includeInboundPorts: "443"
+              traffic.sidecar.istio.io/excludeInboundPorts: "443"
         tekton-triggers-core-interceptors:
           metadata:
             annotations:
               traffic.sidecar.istio.io/excludeOutboundPorts: "8443"
-              traffic.sidecar.istio.io/includeInboundPorts: "8443"
+              traffic.sidecar.istio.io/excludeInboundPorts: "8443"
   pruner:
     resources:
     - pipelinerun
