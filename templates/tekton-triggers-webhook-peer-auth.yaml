@@ -2,12 +2,12 @@
 apiVersion: security.istio.io/v1beta1
 kind: PeerAuthentication
 metadata:
-  name: tekton-pipelines-webhook
+  name: tekton-triggers-webhook
 spec:
   selector:
     matchLabels:
-      app: tekton-pipelines-webhook
+      app: tekton-triggers-webhook
   portLevelMtls:
-    443:
+    8443:
       mode: DISABLE
 {{- end -}}

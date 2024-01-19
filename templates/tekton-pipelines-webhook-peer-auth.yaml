@@ -8,6 +8,6 @@ spec:
     matchLabels:
       app: tekton-pipelines-webhook
   portLevelMtls:
-    443:
+    8443:
       mode: DISABLE
 {{- end -}}
