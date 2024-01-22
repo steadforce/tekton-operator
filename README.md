@@ -13,6 +13,7 @@ The following command renders the charts like argo-cd does to validate the conte
 ```
  helm template --release-name tekton-operator -n tekton-operator --include-crds --skip-tests \
   -a operator.tekton.dev/v1alpha1 \
+  -a security.istio.io/v1beta1 \
   --output-dir _renderOutput . 
 ```
 
