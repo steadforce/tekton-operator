@@ -6,33 +6,10 @@ metadata:
 spec:
   profile: {{ .profile }}
   targetNamespace: {{ .Release.Namespace | quote }}
-  pipeline:
-    options:
-      deployments:
-        tekton-pipelines-webhook:
-          spec:
-            template:
-              metadata:
-                annotations:
-                  traffic.sidecar.istio.io/excludeOutboundPorts: "443"
-                  traffic.sidecar.istio.io/excludeInboundPorts: "443"
-  chain:
-    options:
-      deployments:
-        tekton-triggers-webhook:
-          metadata:
-            annotations:
-              traffic.sidecar.istio.io/excludeOutboundPorts: "443"
-              traffic.sidecar.istio.io/excludeInboundPorts: "443"
-        tekton-triggers-core-interceptors:
-          metadata:
-            annotations:
-              traffic.sidecar.istio.io/excludeOutboundPorts: "8443"
-              traffic.sidecar.istio.io/excludeInboundPorts: "8443"
   pruner:
     resources:
     - pipelinerun
     - taskrun
-    keep: 100
+    keep: 10
     schedule: "0 8 * * *"
 {{- end }}
