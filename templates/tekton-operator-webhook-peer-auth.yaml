@@ -6,7 +6,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      operator.tekton.dev/operand-name: tektoncd-pipelines
+      app: tekton-operator
   portLevelMtls:
     8443:
       mode: DISABLE
