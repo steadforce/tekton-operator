@@ -8,6 +8,6 @@ spec:
     matchLabels:
       operator.tekton.dev/operand-name: tektoncd-pipelines
   portLevelMtls:
-    443:
+    8443:
       mode: DISABLE
 {{- end -}}
