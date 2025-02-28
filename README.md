@@ -1,20 +1,40 @@
 ## Dependencies
 
-This chart expects the `tekton-operator` as a dependency. The used version
-is the commit [5e09408bdf96b6e6bdd1535561540fc002c92c61](https://github.com/tektoncd/operator/commit/5e09408bdf96b6e6bdd1535561540fc002c92c61). The version specified in `Chart.yaml` is `0.69.99` does actually not exist as the current release `0.69.1` has a bug which prevents the operator webhook from starting. Thus the latest commit from the main branch was taken.
+This chart expects the `tekton-operator` as a dependency. The used has to be
+specified in `Chart.yaml` in the `dependencies` section and by git reference tag
+from the chart's source repository.
+
+To get the helm chart fetched from sources, the helm git plugin is needed,
+since there is still no helm release for this chart.
+If you changed the versions (tag and chart version) for an update,
+you need to run
+
+    $ helm dependency update
+
+in order to have the chart downloaded to the `charts` directory
+and then also commit that new version alongside with the altered
+`Chart.yaml` file.
+
+You need the helm git plugin installed to be able to execute above command without
+errors
 
 See the [Helm docs](https://helm.sh/docs/topics/charts/#chart-dependencies)
-for details.
+and [Helm git](https://github.com/aslafy-z/helm-git) for details.
 
 ## Render helm charts locally
 
 The following command renders the charts like argo-cd does to validate the content.
 
 ```
- helm template --release-name tekton-operator -n tekton-operator --include-crds --skip-tests \
+ helm template \
+  --include-crds \
+  --output-dir _local/local \
+  --release-name tekton-operator \
+  --skip-tests \
   -a operator.tekton.dev/v1alpha1 \
   -a security.istio.io/v1beta1 \
-  --output-dir _renderOutput . 
+  -n tekton-operator \
+  . 
 ```
 
 You can use this command to check if the output is as you expect. The `-a` parameters are needed since we use the
