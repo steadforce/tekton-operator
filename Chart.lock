@@ -1,0 +1,6 @@
+dependencies:
+- name: tekton-operator
+  repository: git+https://github.com/tektoncd/operator@charts?ref=v0.71.0
+  version: 0.71.0
+digest: sha256:8ba7c7e509da774c89070941367e2b0f43dd9f7caf710947dd6a8bb1f14d2be5
+generated: "2025-02-28T09:39:09.834805792Z"
